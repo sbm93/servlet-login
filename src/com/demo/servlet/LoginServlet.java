@@ -34,14 +34,16 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("here i am now");
 		String un=request.getParameter("user");
 		String pw=request.getParameter("password");
-		UserElement user;
+		Boolean  isValid;
 		try {
-			user = LookupUserElm.find(un, pw);
+			isValid = LookupUserElm.find(un, pw);
 			
-			System.out.println("user "+ user);
-		
-			response.getWriter().append("Served at: ").append(request.getContextPath());
-			
+			System.out.println("user "+ isValid);
+			if(isValid){
+				response.getWriter().append("you are at dashboard.").append(request.getContextPath());
+			} else {
+				response.getWriter().append("Invalid User Name Password.").append(request.getContextPath());
+			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
