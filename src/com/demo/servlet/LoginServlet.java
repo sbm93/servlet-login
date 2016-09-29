@@ -3,6 +3,7 @@ package com.demo.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,15 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		System.out.println("here i am now");
 		String un=request.getParameter("user");
 		String pw=request.getParameter("password");
@@ -39,8 +49,16 @@ public class LoginServlet extends HttpServlet {
 			isValid = LookupUserElm.find(un, pw);
 			
 			System.out.println("user "+ isValid);
+			
 			if(isValid){
-				response.getWriter().append("you are at dashboard.").append(request.getContextPath());
+				
+				request.setAttribute("success", un);
+				String address = "/success";
+				  RequestDispatcher rd=request.getRequestDispatcher(address);  
+			        rd.forward(request, response);  
+				
+//				response.getWriter().append("you are at dashboard.").append(request.getContextPath());
+				
 			} else {
 				response.getWriter().append("Invalid User Name Password.").append(request.getContextPath());
 			}
@@ -51,15 +69,6 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

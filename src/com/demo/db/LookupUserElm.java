@@ -31,6 +31,8 @@ public class LookupUserElm {
 			}
 			
 		}
+		rs.close();
+		conn.close();
 		return flag;
 
 	}

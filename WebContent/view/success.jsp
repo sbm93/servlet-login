@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Success</title>
 </head>
 <body>
-	<form action="/login/login-user" method="POST">
-		<p>User Name : <input type="text" id="user" name="user" /></p>
-		
-		<p>Password: <input type="text" id="password" name="password" /></p>
-		<input type="submit" value="Submit" />
-	</form>
+	<div> Name: ${success}</div>
 </body>
 </html>
